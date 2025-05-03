@@ -42,7 +42,7 @@ export function RegistryDetailsDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[425px] bg-white dark:bg-navy-800 text-navy-900 dark:text-white">
+      <DialogContent className="sm:max-w-[425px] bg-white dark:bg-navy-800 text-navy-900 dark:text-white max-w-[95vw] max-h-[90vh] w-full p-3 sm:p-6 rounded-2xl shadow-2xl overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-2xl playfair">{registry.name}</DialogTitle>
           <DialogDescription className="text-navy-600 dark:text-navy-200">
@@ -95,7 +95,7 @@ export function RegistryDetailsDialog({
                     exit={{ opacity: 0, height: 0 }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 bg-white dark:bg-navy-700 rounded-lg border border-gold-200/20">
+                    <div className="p-4 bg-white dark:bg-navy-700 rounded-lg border border-gold-200/20 max-w-[90vw] h-auto mx-auto block">
                       <Image
                         src={registry.qrCode}
                         alt={`${registry.name} QR Code`}
@@ -111,7 +111,7 @@ export function RegistryDetailsDialog({
           )}
 
           {registry.additionalDetails && (
-            <div className="text-sm text-navy-600 dark:text-navy-200">
+            <div className="text-sm text-navy-600 dark:text-navy-200 text-base sm:text-lg">
               <p className="whitespace-pre-line">{registry.additionalDetails}</p>
             </div>
           )}

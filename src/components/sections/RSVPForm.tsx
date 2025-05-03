@@ -293,8 +293,9 @@ const RSVPMarquee: React.FC<{ entries: RSVPEntry[] }> = ({ entries }) => {
       {/* RSVP Detail Modal */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="sm:max-w-[400px] bg-white dark:bg-navy-900 border border-gold/20 rounded-2xl shadow-2xl p-0 overflow-hidden transition-all duration-300">
+          <DialogTitle className="sr-only">RSVP Details</DialogTitle>
           <div className="flex justify-between items-center px-6 pt-6 pb-2">
-            <DialogTitle className="text-xl text-navy-900 dark:text-gold font-bold playfair">RSVP Details</DialogTitle>
+            <h2 className="text-xl text-navy-900 dark:text-gold font-bold playfair">RSVP Details</h2>
           </div>
           {selectedEntry && (
             <div className="px-6 pb-6 flex flex-col gap-2">
@@ -413,8 +414,9 @@ const GuestListModal = ({ entries, dataSource, totalGuests }: { entries: RSVPEnt
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[600px] bg-white dark:bg-navy-900 border border-gold/20 rounded-2xl shadow-2xl p-0 overflow-hidden transition-all duration-300">
+        <DialogTitle className="sr-only">Guest List</DialogTitle>
         <div className="flex justify-between items-center px-6 pt-6 pb-2">
-          <DialogTitle className="text-2xl text-navy-900 dark:text-gold font-bold playfair">Guest List</DialogTitle>
+          <h2 className="text-2xl text-navy-900 dark:text-gold font-bold playfair">Guest List</h2>
         </div>
         <div className="px-6 pb-2 flex justify-between items-center text-sm">
           <span className="text-navy-700 dark:text-gold/80 font-medium bg-navy-100/80 dark:bg-navy-800/80 px-3 py-1.5 rounded-full">{totalGuests} {totalGuests === 1 ? 'guest' : 'guests'} confirmed</span>

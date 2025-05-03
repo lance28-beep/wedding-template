@@ -35,13 +35,11 @@ const TimelineItem = ({ event, index, totalEvents }: { event: TimelineEvent; ind
   return (
     <div
       ref={ref}
-      className="relative mb-24 last:mb-0"
+      className="relative mb-16 md:mb-24 last:mb-0"
     >
       {/* Content Container */}
       <motion.div
-        className={`relative z-10 flex flex-col md:flex-row items-center gap-8 ${
-          isEven ? 'md:flex-row-reverse' : ''
-        }`}
+        className="relative z-10 flex flex-col md:flex-row md:items-center gap-4 md:gap-8"
         initial={{ opacity: 0, y: 50 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: index * 0.2 }}
@@ -49,79 +47,85 @@ const TimelineItem = ({ event, index, totalEvents }: { event: TimelineEvent; ind
         {/* Image Section */}
         {event.image && (
           <motion.div
-            className="w-full md:w-1/2 relative aspect-square rounded-2xl overflow-hidden shadow-xl"
+            className={`w-full md:w-1/2 relative aspect-square rounded-xl md:rounded-2xl overflow-hidden shadow-lg md:shadow-xl ${
+              isEven ? 'md:order-2' : 'md:order-1'
+            }`}
             initial={{ scale: 0.9, opacity: 0 }}
             animate={inView ? { scale: 1, opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: index * 0.2 + 0.2 }}
-      >
+          >
             <Image
               src={event.image}
               alt={event.imageAlt || event.title}
               fill
               className="object-cover transition-transform duration-500 hover:scale-105"
+              sizes="(max-width: 375px) 100vw, (max-width: 768px) 100vw, 50vw"
+              quality={85}
+              priority={index < 2}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-      </motion.div>
+          </motion.div>
         )}
 
         {/* Text Content */}
         <motion.div
-          className={`w-full md:w-1/2 p-6 md:p-8 rounded-2xl backdrop-blur-sm bg-white/5 border border-gold/20
-            ${isEven ? 'md:pr-12' : 'md:pl-12'}`}
-          initial={{ opacity: 0, x: isEven ? 50 : -50 }}
+          className={`w-full md:w-1/2 p-4 md:p-8 rounded-xl md:rounded-2xl backdrop-blur-sm bg-white/5 border border-gold/20 ${
+            isEven ? 'md:order-1' : 'md:order-2'
+          }`}
+          initial={{ opacity: 0, x: isEven ? -50 : 50 }}
           animate={inView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.8, delay: index * 0.2 + 0.4 }}
         >
           {/* Date and Location */}
-          <div className="flex items-center gap-4 mb-4">
-            <div className="text-gold figtree text-sm font-medium">{event.date}</div>
+          <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-3 md:mb-4">
+            <div className="text-gold figtree text-xs md:text-sm font-medium">{event.date}</div>
             {event.location && (
-              <div className="flex items-center gap-1 text-gold/80 figtree text-xs">
-                <FaMapMarkerAlt className="text-xs" />
+              <div className="flex items-center gap-1 text-gold/80 figtree text-[10px] md:text-xs">
+                <FaMapMarkerAlt className="text-[10px] md:text-xs" />
                 {event.location}
               </div>
             )}
           </div>
 
           {/* Title */}
-          <h3 className="text-2xl md:text-3xl playfair mb-4 text-gold">{event.title}</h3>
+          <h3 className="text-xl md:text-3xl playfair mb-3 md:mb-4 text-gold">{event.title}</h3>
 
           {/* Quote (if provided) */}
           {event.quote && (
             <motion.div
-              className="mb-6 italic text-gold/90 border-l-2 border-gold/50 pl-4 py-2 relative"
+              className="mb-4 md:mb-6 italic text-gold/90 border-l-2 border-gold/50 pl-3 md:pl-4 py-1 md:py-2 relative"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.2 + 0.6 }}
             >
-              <FaQuoteLeft className="absolute -left-2 -top-2 text-gold/30 text-2xl" />
-              "{event.quote}"
+              <FaQuoteLeft className="absolute -left-2 -top-2 text-gold/30 text-xl md:text-2xl" />
+              <span className="text-sm md:text-base">"{event.quote}"</span>
             </motion.div>
           )}
 
           {/* Description */}
-          <p className="figtree text-white/80 leading-relaxed">{event.description}</p>
+          <p className="figtree text-white/80 leading-relaxed text-sm md:text-base">{event.description}</p>
         </motion.div>
       </motion.div>
 
       {/* Timeline Connector */}
       {index < totalEvents - 1 && (
         <motion.div
-          className="absolute left-1/2 top-full -translate-x-1/2 w-1 h-12 bg-gradient-to-b from-gold/30 to-gold/10 hidden md:block"
+          className="absolute left-1/2 top-full -translate-x-1/2 w-1 h-8 md:h-12 bg-gradient-to-b from-gold/30 to-gold/10 hidden md:block"
           initial={{ height: 0 }}
-          animate={inView ? { height: 48 } : {}}
+          animate={inView ? { height: 32 } : {}}
           transition={{ duration: 0.5, delay: index * 0.2 + 0.8 }}
         />
       )}
 
       {/* Timeline Dot */}
       <motion.div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-navy border-2 border-gold flex items-center justify-center hidden md:flex"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-6 h-6 md:w-8 md:h-8 rounded-full bg-navy border-2 border-gold flex items-center justify-center hidden md:flex"
         initial={{ scale: 0 }}
         animate={inView ? { scale: 1 } : {}}
         transition={{ duration: 0.5, delay: index * 0.2 }}
       >
-        <FaHeart className="text-gold text-xs animate-pulse" />
+        <FaHeart className="text-gold text-[10px] md:text-xs animate-pulse" />
       </motion.div>
     </div>
   );
@@ -189,14 +193,14 @@ const LoveStoryTimeline: React.FC<LoveStoryTimelineProps> = ({
   return (
     <section
       ref={sectionRef}
-      className="py-20 px-4 sm:px-6 lg:px-8 navy-bg text-white relative overflow-hidden"
+      className="py-12 md:py-20 px-4 sm:px-6 lg:px-8 navy-bg text-white relative overflow-hidden"
     >
-      <DecorativeElements type="hearts" count={15} />
+      <DecorativeElements type="hearts" count={8} />
 
       {/* Section Header */}
-      <div className="container mx-auto text-center mb-16">
+      <div className="container mx-auto text-center mb-12 md:mb-16">
         <motion.h2
-          className="text-4xl md:text-5xl lg:text-6xl playfair mb-4 text-gold"
+          className="text-3xl md:text-5xl lg:text-6xl playfair mb-3 md:mb-4 text-gold"
           initial={{ opacity: 0, y: 20 }}
           animate={sectionInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -207,12 +211,12 @@ const LoveStoryTimeline: React.FC<LoveStoryTimelineProps> = ({
           initial={{ scale: 0 }}
           animate={sectionInView ? { scale: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex justify-center my-3"
+          className="flex justify-center my-2 md:my-3"
         >
-          <div className="w-20 h-1 bg-gradient-to-r from-gold/50 via-gold to-gold/50" />
+          <div className="w-16 md:w-20 h-0.5 md:h-1 bg-gradient-to-r from-gold/50 via-gold to-gold/50" />
         </motion.div>
         <motion.p
-          className="text-white/80 figtree max-w-2xl mx-auto text-lg md:text-xl"
+          className="text-white/80 figtree max-w-2xl mx-auto text-base md:text-lg lg:text-xl px-4"
           initial={{ opacity: 0 }}
           animate={sectionInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}

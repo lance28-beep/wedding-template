@@ -126,13 +126,13 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
   };
 
   return (
-    <section ref={ref} className="py-24 px-6 bg-gradient-to-b from-white via-white to-gold-50/10 dark:from-navy-900 dark:via-navy-900 dark:to-navy-800 relative overflow-hidden">
-      <DecorativeElements type="hearts" count={8} />
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-b from-white via-white to-gold-50/10 dark:from-navy-900 dark:via-navy-900 dark:to-navy-800 relative overflow-hidden">
+      <DecorativeElements type="hearts" count={4} />
       
       {/* Section Title */}
-      <div className="container mx-auto text-center mb-16">
+      <div className="container mx-auto text-center mb-8 sm:mb-12 md:mb-16">
         <motion.h2
-          className="text-4xl md:text-5xl playfair text-navy-900 dark:text-white mb-4"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl playfair text-navy-900 dark:text-white mb-2 sm:mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -143,12 +143,12 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
           initial={{ scale: 0 }}
           animate={inView ? { scale: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex justify-center my-3"
+          className="flex justify-center my-2 sm:my-3"
         >
-          <div className="w-20 h-1 bg-gold" />
+          <div className="w-12 sm:w-16 md:w-20 h-0.5 sm:h-1 bg-gold" />
         </motion.div>
         <motion.p
-          className="text-lg text-navy-600 dark:text-navy-200 max-w-2xl mx-auto italic"
+          className="text-sm sm:text-base md:text-lg text-navy-600 dark:text-navy-200 max-w-xs sm:max-w-sm md:max-w-2xl mx-auto italic"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -158,9 +158,9 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
       </div>
 
       {/* Video Section */}
-      <div className="container mx-auto max-w-5xl mb-16">
+      <div className="container mx-auto max-w-5xl mb-8 sm:mb-12 md:mb-16">
         <motion.div
-          className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-2xl bg-black"
+          className="relative aspect-video w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl bg-black"
           initial={mounted ? { opacity: 0, y: 20 } : undefined}
           animate={mounted && inView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.6, delay: 0.5 }}
@@ -201,7 +201,7 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
           
           {isLoading && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-              <FaSpinner className="text-4xl text-white animate-spin" />
+              <FaSpinner className="text-2xl sm:text-3xl md:text-4xl text-white animate-spin" />
             </div>
           )}
           
@@ -209,17 +209,17 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
             <div className="absolute inset-0 bg-black/30 flex items-center justify-center transition-opacity duration-300 hover:bg-black/40 group opacity-0 hover:opacity-100">
               <button
                 onClick={handlePlayPause}
-                className="absolute bottom-4 left-4 p-2 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                className="absolute bottom-2 sm:bottom-4 left-2 sm:left-4 p-1.5 sm:p-2 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400"
                 aria-label={isPlaying ? "Pause video" : "Play video"}
               >
-                {isPlaying ? <FaPause className="text-xl" /> : <FaPlay className="text-xl" />}
+                {isPlaying ? <FaPause className="text-lg sm:text-xl" /> : <FaPlay className="text-lg sm:text-xl" />}
               </button>
               <button
                 onClick={toggleFullscreen}
-                className="absolute bottom-4 right-4 p-2 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 p-1.5 sm:p-2 rounded-full bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400"
                 aria-label="Toggle fullscreen"
               >
-                <FaExpand className="text-xl" />
+                <FaExpand className="text-lg sm:text-xl" />
               </button>
             </div>
           )}
@@ -229,7 +229,7 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
       {/* Image Slider */}
       <div className="container mx-auto max-w-5xl">
         <motion.div
-          className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden shadow-2xl"
+          className="relative aspect-[4/3] sm:aspect-[16/9] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-lg sm:shadow-2xl"
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           initial={mounted ? { opacity: 0, y: 20 } : undefined}
@@ -251,33 +251,35 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
                 fill
                 className="object-cover"
                 priority
+                sizes="(max-width: 375px) 100vw, (max-width: 768px) 80vw, 1200px"
+                quality={85}
                 onLoadingComplete={() => setIsLoading(false)}
               />
             </motion.div>
           </AnimatePresence>
 
           {/* Navigation Buttons */}
-          <div className="absolute inset-0 flex items-center justify-between p-4">
+          <div className="absolute inset-0 flex items-center justify-between p-2 sm:p-4">
             <button
               onClick={previousImage}
-              className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400 opacity-0 hover:opacity-100"
+              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400 opacity-0 hover:opacity-100"
               aria-label="Previous image"
             >
-              <FaChevronLeft className="text-xl" />
+              <FaChevronLeft className="text-base sm:text-lg md:text-xl" />
             </button>
             <button
               onClick={nextImage}
-              className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400 opacity-0 hover:opacity-100"
+              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400 opacity-0 hover:opacity-100"
               aria-label="Next image"
             >
-              <FaChevronRight className="text-xl" />
+              <FaChevronRight className="text-base sm:text-lg md:text-xl" />
             </button>
           </div>
         </motion.div>
 
         {/* Thumbnail Navigation */}
         <motion.div
-          className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4"
+          className="mt-4 sm:mt-6 md:mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4"
           initial={mounted ? { opacity: 0, y: 20 } : undefined}
           animate={mounted && inView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.6, delay: 0.7 }}
@@ -288,7 +290,7 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
               onClick={() => setCurrentImageIndex(index)}
               className={`relative aspect-[4/3] rounded-lg overflow-hidden transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gold-400 ${
                 currentImageIndex === index
-                  ? 'ring-4 ring-gold-400 scale-105'
+                  ? 'ring-2 sm:ring-4 ring-gold-400 scale-105'
                   : 'ring-2 ring-transparent hover:ring-gold-200'
               }`}
               aria-label={`View image ${index + 1}`}
@@ -298,6 +300,8 @@ const PrenupGallery: React.FC<PrenupGalleryProps> = ({ videoUrl, images }) => {
                 alt={image.alt}
                 fill
                 className="object-cover"
+                sizes="(max-width: 375px) 45vw, (max-width: 768px) 30vw, 200px"
+                quality={60}
               />
               <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </button>

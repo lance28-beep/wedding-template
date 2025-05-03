@@ -175,11 +175,11 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
   return (
     <section
       ref={ref}
-      className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-white via-white to-gold-50/10 dark:from-navy-900 dark:via-navy-900/95 dark:to-navy-800/90"
+      className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 overflow-hidden bg-gradient-to-b from-white via-white to-gold-50/10 dark:from-navy-900 dark:via-navy-900/95 dark:to-navy-800/90"
     >
       <ParticleEffect />
-      {/* Enhanced Wedding decoration elements with subtle animation */}
-      <div className="absolute top-0 left-0 w-64 h-64 pointer-events-none">
+      {/* Optimized decorative elements for mobile */}
+      <div className="absolute top-0 left-0 w-32 h-32 sm:w-64 sm:h-64 pointer-events-none">
         <motion.div
           animate={{
             scale: [1, 1.05, 1],
@@ -194,13 +194,15 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
           <Image
             src="/img/10-105973_navy-blue-wedding-clipart-white-corner-design-png-removebg-preview.png"
             alt="Wedding decoration"
-            width={256}
-            height={256}
-            className="opacity-50 dark:invert dark:opacity-30"
+            width={128}
+            height={128}
+            className="opacity-30 dark:invert dark:opacity-20"
+            priority
+            sizes="(max-width: 640px) 128px, 256px"
           />
         </motion.div>
       </div>
-      <div className="absolute top-0 right-0 w-64 h-64 pointer-events-none">
+      <div className="absolute top-0 right-0 w-32 h-32 sm:w-64 sm:h-64 pointer-events-none">
         <motion.div
           animate={{
             scale: [1, 1.05, 1],
@@ -215,13 +217,15 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
           <Image
             src="/img/10-105973_navy-blue-wedding-clipart-white-corner-design-png-removebg-preview.png"
             alt="Wedding decoration"
-            width={256}
-            height={256}
-            className="opacity-50 dark:invert dark:opacity-30"
+            width={128}
+            height={128}
+            className="opacity-30 dark:invert dark:opacity-20"
+            priority
+            sizes="(max-width: 640px) 128px, 256px"
           />
         </motion.div>
       </div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 pointer-events-none">
+      <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-64 sm:h-64 pointer-events-none">
         <motion.div
           animate={{
             scale: [1, 1.05, 1],
@@ -236,13 +240,15 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
           <Image
             src="/img/10-105973_navy-blue-wedding-clipart-white-corner-design-png-removebg-preview.png"
             alt="Wedding decoration"
-            width={256}
-            height={256}
-            className="opacity-50 dark:invert dark:opacity-30"
+            width={128}
+            height={128}
+            className="opacity-30 dark:invert dark:opacity-20"
+            priority
+            sizes="(max-width: 640px) 128px, 256px"
           />
         </motion.div>
       </div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 pointer-events-none">
+      <div className="absolute bottom-0 right-0 w-32 h-32 sm:w-64 sm:h-64 pointer-events-none">
         <motion.div
           animate={{
             scale: [1, 1.05, 1],
@@ -257,37 +263,39 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
           <Image
             src="/img/10-105973_navy-blue-wedding-clipart-white-corner-design-png-removebg-preview.png"
             alt="Wedding decoration"
-            width={256}
-            height={256}
-            className="opacity-50 dark:invert dark:opacity-30"
+            width={128}
+            height={128}
+            className="opacity-30 dark:invert dark:opacity-20"
+            priority
+            sizes="(max-width: 640px) 128px, 256px"
           />
         </motion.div>
       </div>
 
       {/* Enhanced Section Header */}
-      <div className="container mx-auto text-center mb-16 relative">
+      <div className="container mx-auto text-center mb-8 sm:mb-12 md:mb-16 relative">
         <motion.div
           className="relative inline-block"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl playfair text-navy-900 dark:text-white mb-4 relative">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl playfair text-navy-900 dark:text-white mb-2 sm:mb-4">
             {title}
           </h2>
         </motion.div>
 
         <motion.div
-          className="flex justify-center my-4"
+          className="flex justify-center my-2 sm:my-4"
           initial={{ scale: 0 }}
           animate={inView ? { scale: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="w-32 h-0.5 bg-gradient-to-r from-gold/30 via-gold to-gold/30 rounded-full" />
+          <div className="w-20 sm:w-24 md:w-32 h-0.5 bg-gradient-to-r from-gold/30 via-gold to-gold/30 rounded-full" />
         </motion.div>
 
         <motion.p
-          className="text-lg md:text-xl text-navy-600 dark:text-navy-200 figtree max-w-2xl mx-auto"
+          className="text-sm sm:text-base md:text-lg text-navy-600 dark:text-navy-200 figtree max-w-xs sm:max-w-sm md:max-w-2xl mx-auto"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
@@ -296,10 +304,10 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
         </motion.p>
       </div>
 
-      {/* Enhanced Gift Message with more encouraging content */}
-      <div className="container mx-auto max-w-3xl mb-16">
+      {/* Enhanced Gift Message */}
+      <div className="container mx-auto max-w-3xl mb-8 sm:mb-12 md:mb-16">
         <motion.div
-          className="relative bg-white/80 dark:bg-navy-800/80 backdrop-blur-lg rounded-2xl p-8 md:p-10 text-center shadow-lg border border-gold/10 hover:border-gold/20 transition-all duration-300 overflow-hidden"
+          className="relative bg-white/80 dark:bg-navy-800/80 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 text-center shadow-md sm:shadow-lg border border-gold/10 hover:border-gold/20 transition-all duration-300 overflow-hidden"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -315,20 +323,20 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
               repeatType: "reverse"
             }}
           >
-            <FaHeart className="text-romantic/80 mx-auto mb-6 text-3xl" />
+            <FaHeart className="text-romantic/80 mx-auto mb-3 sm:mb-4 md:mb-6 text-xl sm:text-2xl md:text-3xl" />
           </motion.div>
           
-          <p className="figtree text-lg md:text-xl text-navy-600 dark:text-navy-200 italic relative z-10 mb-6">
+          <p className="figtree text-sm sm:text-base md:text-lg text-navy-600 dark:text-navy-200 italic relative z-10 mb-3 sm:mb-4 md:mb-6">
             {message}
           </p>
 
           <motion.div
-            className="mt-6 p-4 bg-gold-50/20 dark:bg-navy-700/20 rounded-lg border border-gold/10"
+            className="mt-3 sm:mt-4 md:mt-6 p-3 sm:p-4 bg-gold-50/20 dark:bg-navy-700/20 rounded-lg border border-gold/10"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.7 }}
           >
-            <p className="text-base md:text-lg text-navy-700 dark:text-navy-100">
+            <p className="text-xs sm:text-sm md:text-base text-navy-700 dark:text-navy-100">
               Your generous contribution will help us start our new life together and create beautiful memories. 
               Whether it's helping us furnish our new home, plan our honeymoon, or save for our future, 
               your gift will be cherished and appreciated beyond measure.
@@ -336,21 +344,21 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
           </motion.div>
 
           <motion.div
-            className="mt-6 flex justify-center gap-4"
+            className="mt-3 sm:mt-4 md:mt-6 flex justify-center gap-2 sm:gap-3 md:gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
-            <FaGift className="text-gold-400 text-xl" />
-            <FaHandHoldingHeart className="text-romantic text-xl" />
-            <FaGift className="text-gold-400 text-xl" />
+            <FaGift className="text-gold-400 text-base sm:text-lg md:text-xl" />
+            <FaHandHoldingHeart className="text-romantic text-base sm:text-lg md:text-xl" />
+            <FaGift className="text-gold-400 text-base sm:text-lg md:text-xl" />
           </motion.div>
         </motion.div>
       </div>
 
       {/* Enhanced Registry Cards */}
       <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {registries.map((registry: Registry, index: number) => (
             <motion.div
               key={registry.id}
@@ -361,31 +369,31 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
               whileHover="hover"
               className="group"
             >
-              <Card className="h-full flex flex-col bg-white/80 dark:bg-navy-800/80 backdrop-blur-lg border-gold/10 hover:border-gold/20 shadow-lg transition-all duration-500 relative overflow-hidden">
-                <CardHeader className="relative">
-                  <div className="mb-3 text-3xl text-gold-400 dark:text-gold-300 relative z-10">
+              <Card className="h-full flex flex-col bg-white/80 dark:bg-navy-800/80 backdrop-blur-lg border-gold/10 hover:border-gold/20 shadow-md sm:shadow-lg transition-all duration-500 relative overflow-hidden">
+                <CardHeader className="relative p-4 sm:p-6">
+                  <div className="mb-2 sm:mb-3 text-2xl sm:text-3xl text-gold-400 dark:text-gold-300 relative z-10">
                     {registry.icon}
                   </div>
                   
-                  <CardTitle className="text-2xl playfair text-navy-900 dark:text-white relative z-10">
+                  <CardTitle className="text-xl sm:text-2xl playfair text-navy-900 dark:text-white relative z-10">
                     {registry.name}
                   </CardTitle>
                   
-                  <CardDescription className="figtree text-base text-navy-600 dark:text-navy-200 relative z-10">
+                  <CardDescription className="figtree text-sm sm:text-base text-navy-600 dark:text-navy-200 relative z-10">
                     {registry.description}
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="flex-grow relative z-10">
+                <CardContent className="flex-grow relative z-10 p-4 sm:p-6">
                   {registry.qrCode && (
-                    <div className="mt-4 space-y-4">
+                    <div className="mt-2 sm:mt-4 space-y-2 sm:space-y-4">
                       <Button
                         variant="outline"
-                        className="w-full bg-white/80 dark:bg-navy-700/80 border-gold/10 hover:border-gold/20 hover:bg-gold-50/10 dark:hover:bg-navy-700/70 transition-all duration-300 relative overflow-hidden"
+                        className="w-full bg-white/80 dark:bg-navy-700/80 border-gold/10 hover:border-gold/20 hover:bg-gold-50/10 dark:hover:bg-navy-700/70 transition-all duration-300 relative overflow-hidden text-xs sm:text-sm"
                         onClick={() => setShowQR(showQR === registry.id ? null : registry.id)}
                       >
                         <span className="relative z-10 flex items-center justify-center">
-                          <FaQrcode className="mr-2" />
+                          <FaQrcode className="mr-2 text-xs sm:text-sm" />
                           {showQR === registry.id ? 'Hide QR Code' : 'Show QR Code'}
                         </span>
                       </Button>
@@ -397,15 +405,16 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="relative rounded-lg overflow-hidden bg-white/90 dark:bg-navy-700/90 p-4"
+                            className="relative rounded-lg overflow-hidden bg-white/90 dark:bg-navy-700/90 p-2 sm:p-4"
                           >
                             <Image
                               src={registry.qrCode}
                               alt={`${registry.name} QR Code`}
-                              width={200}
-                              height={200}
+                              width={150}
+                              height={150}
                               className="mx-auto"
                               priority
+                              sizes="(max-width: 640px) 150px, 200px"
                               onError={(e) => {
                                 console.error(`Error loading QR code for ${registry.name}:`, e);
                                 const img = e.target as HTMLImageElement;
@@ -414,18 +423,18 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
                             />
                             {registry.accountNumber && (
                               <div className="mt-2 text-center">
-                                <p className="text-sm text-navy-600 dark:text-navy-200">Account Number:</p>
+                                <p className="text-xs sm:text-sm text-navy-600 dark:text-navy-200">Account Number:</p>
                                 <div className="flex items-center justify-center gap-2 mt-1">
-                                  <code className="bg-navy-100/50 dark:bg-navy-700/50 px-2 py-1 rounded text-sm">
+                                  <code className="bg-navy-100/50 dark:bg-navy-700/50 px-2 py-1 rounded text-xs sm:text-sm">
                                     {registry.accountNumber}
                                   </code>
                                   <Button
                                     variant="ghost"
                                     size="sm"
                                     onClick={() => copyToClipboard(registry.accountNumber!)}
-                                    className="text-gold hover:text-gold-600 dark:text-gold-400 dark:hover:text-gold-300"
+                                    className="text-gold hover:text-gold-600 dark:text-gold-400 dark:hover:text-gold-300 p-1 sm:p-2"
                                   >
-                                    <FaCopy size={14} />
+                                    <FaCopy size={12} />
                                   </Button>
                                 </div>
                               </div>
@@ -437,10 +446,10 @@ const GiftRegistry: React.FC<GiftRegistryProps> = ({
                   )}
                 </CardContent>
 
-                <CardFooter className="mt-auto relative z-10">
+                <CardFooter className="mt-auto relative z-10 p-4 sm:p-6">
                   <Button 
                     onClick={() => handleRegistryClick(registry)}
-                    className="w-full bg-navy-900/90 hover:bg-navy-800 dark:bg-white/10 dark:hover:bg-white/20 text-white dark:text-white transition-all duration-300 relative overflow-hidden"
+                    className="w-full bg-navy-900/90 hover:bg-navy-800 dark:bg-white/10 dark:hover:bg-white/20 text-white dark:text-white transition-all duration-300 relative overflow-hidden text-xs sm:text-sm"
                   >
                     <span className="relative z-10 flex items-center justify-center gap-2">
                       {registry.url.startsWith('#') ? (

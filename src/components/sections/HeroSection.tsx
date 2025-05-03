@@ -53,7 +53,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
-    }, 3000); // Reduced to 3 seconds for smoother transitions
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [mounted, backgroundImages.length]);
@@ -85,7 +85,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           transition={{ duration: 0.3 }}
           className="absolute inset-0 flex items-center justify-center"
         >
-          <FaHeart className="text-white w-12 h-12 animate-pulse" />
+          <FaHeart className="text-white w-8 h-8 sm:w-12 sm:h-12 animate-pulse" />
         </motion.div>
       </motion.div>
 
@@ -117,8 +117,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               fill
               className="object-cover"
               priority
-              quality={100}
-              sizes="100vw"
+              quality={85}
+              sizes="(max-width: 375px) 100vw, 800px"
             />
           </motion.div>
         </AnimatePresence>
@@ -130,20 +130,29 @@ const HeroSection: React.FC<HeroSectionProps> = ({
         />
       </div>
 
-      {/* Decorative Elements */}
+      {/* Decorative Elements - Reduced count on mobile */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.2 }}
+        className="hidden sm:block"
       >
         <DecorativeElements type="sparkles" count={20} />
       </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 1.2 }}
+        className="block sm:hidden"
+      >
+        <DecorativeElements type="sparkles" count={10} />
+      </motion.div>
 
-      {/* Floating Hearts */}
-      {[...Array(8)].map((_, i) => (
+      {/* Floating Hearts - Reduced count and size on mobile */}
+      {[...Array(4)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute text-romantic/20"
+          className="absolute text-romantic/20 hidden sm:block"
           initial={{ 
             x: typeof window !== 'undefined' ? Math.random() * window.innerWidth : 0,
             y: typeof window !== 'undefined' ? Math.random() * window.innerHeight : 0,
@@ -167,7 +176,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
       {/* Content Container */}
       <motion.div 
-        className="container mx-auto px-6 relative z-10 text-center"
+        className="container mx-auto px-4 sm:px-6 relative z-10 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
@@ -177,12 +186,12 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-12"
+          className="mb-8 sm:mb-12"
         >
-          <div className="uppercase tracking-widest figtree text-sm mb-4 text-gold/80">{date}</div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+          <div className="uppercase tracking-widest figtree text-xs sm:text-sm mb-3 sm:mb-4 text-gold/80">{date}</div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-3 sm:mb-4">
             <motion.div 
-              className="text-6xl sm:text-7xl playfair text-gold"
+              className="text-4xl sm:text-6xl lg:text-7xl playfair text-gold"
               initial={{ opacity: 0, x: -20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
@@ -190,7 +199,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               {month}
             </motion.div>
             <motion.div 
-              className="text-6xl sm:text-7xl playfair text-gold"
+              className="text-4xl sm:text-6xl lg:text-7xl playfair text-gold"
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
@@ -198,7 +207,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               {day}
             </motion.div>
             <motion.div 
-              className="text-6xl sm:text-7xl playfair text-gold"
+              className="text-4xl sm:text-6xl lg:text-7xl playfair text-gold"
               initial={{ opacity: 0, x: 20 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.9 }}
@@ -207,7 +216,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             </motion.div>
           </div>
           <motion.div 
-            className="uppercase tracking-widest figtree text-sm mt-4 text-gold/80"
+            className="uppercase tracking-widest figtree text-xs sm:text-sm mt-2 sm:mt-4 text-gold/80"
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 1.1 }}
@@ -221,24 +230,24 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           initial={{ scale: 0 }}
           animate={inView ? { scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex justify-center items-center gap-4 my-8"
+          className="flex justify-center items-center gap-2 sm:gap-4 my-6 sm:my-8"
         >
-          <div className="h-[1px] w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+          <div className="h-[1px] w-12 sm:w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
           <div className="relative">
             <img
               src="https://ext.same-assets.com/2441784941/2571036543.svg"
               alt="Elegant crown"
-              className="h-10 w-auto"
+              className="h-8 sm:h-10 w-auto"
             />
             <motion.div
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
               className="absolute -top-1 -right-1"
             >
-              <FaHeart className="text-romantic w-3 h-3" />
+              <FaHeart className="text-romantic w-2 h-2 sm:w-3 sm:h-3" />
             </motion.div>
           </div>
-          <div className="h-[1px] w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
+          <div className="h-[1px] w-12 sm:w-16 bg-gradient-to-r from-transparent via-gold to-transparent" />
         </motion.div>
 
         {/* Couple Names */}
@@ -246,9 +255,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           initial={{ opacity: 0, scale: 0.9 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1, delay: 0.8 }}
-          className="my-12 relative"
+          className="my-8 sm:my-12 relative"
         >
-          <h1 className="text-6xl md:text-8xl playfair mb-2 tracking-wide">
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl playfair mb-2 tracking-wide">
             <motion.span 
               className="block sm:inline-block"
               initial={{ opacity: 0, x: -30 }}
@@ -258,7 +267,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               {names[0]}
             </motion.span>
             <motion.span 
-              className="block sm:inline-block mx-4 text-gold"
+              className="block sm:inline-block mx-2 sm:mx-4 text-gold"
               initial={{ opacity: 0, scale: 0 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -281,7 +290,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1.6 }}
-          className="figtree text-lg md:text-xl max-w-2xl mx-auto mt-8 leading-relaxed text-white/90"
+          className="figtree text-sm sm:text-lg md:text-xl max-w-2xl mx-auto mt-6 sm:mt-8 leading-relaxed text-white/90 px-4"
         >
           Together with their families, request the pleasure of your company as they celebrate their marriage
         </motion.p>
@@ -291,11 +300,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 2 }}
-          className="absolute bottom-16 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-8 sm:bottom-16 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
             animate={{ 
-              y: [0, 10, 0],
+              y: [0, 8, 0],
               opacity: [0.5, 1, 0.5]
             }}
             transition={{ 
@@ -305,10 +314,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({
             }}
             className="text-white/80"
           >
-            <div className="relative h-16 w-[1px] mx-auto mb-2">
+            <div className="relative h-12 sm:h-16 w-[1px] mx-auto mb-2">
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gold to-transparent" />
             </div>
-            <p className="text-xs uppercase tracking-widest text-gold/80">Scroll</p>
+            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gold/80">Scroll</p>
           </motion.div>
         </motion.div>
       </motion.div>

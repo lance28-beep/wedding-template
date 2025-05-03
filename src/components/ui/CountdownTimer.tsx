@@ -154,45 +154,49 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
   return (
     <div className="relative w-full bg-navy-900 overflow-hidden">
       {/* Background Pattern - Subtle on mobile */}
-      <div className="absolute inset-0 opacity-[0.03] md:opacity-5 pointer-events-none">
-        <div className="absolute top-0 left-0 w-16 md:w-28 h-16 md:h-28">
+      <div className="absolute inset-0 opacity-[0.02] md:opacity-5 pointer-events-none">
+        <div className="absolute top-0 left-0 w-12 md:w-28 h-12 md:h-28">
           <Image
             src="/img/weddingDeco.png"
             alt="Corner Decoration"
             width={112}
             height={112}
             className={`transform scale-75 ${isDark ? 'opacity-40 invert' : 'opacity-60'}`}
+            priority
+            sizes="(max-width: 375px) 48px, 112px"
           />
         </div>
-        <div className="absolute top-0 right-0 w-16 md:w-28 h-16 md:h-28">
+        <div className="absolute top-0 right-0 w-12 md:w-28 h-12 md:h-28">
           <Image
             src="/img/weddingDeco.png"
             alt="Corner Decoration"
             width={112}
             height={112}
             className={`transform -scale-x-75 scale-y-75 ${isDark ? 'opacity-40 invert' : 'opacity-60'}`}
+            priority
+            sizes="(max-width: 375px) 48px, 112px"
           />
         </div>
       </div>
 
-      <div className="container mx-auto px-3 md:px-4 pt-6 pb-2 md:py-6 relative z-10 max-w-3xl">
+      <div className="container mx-auto px-3 md:px-4 pt-4 pb-2 md:py-6 relative z-10 max-w-3xl">
         {/* Date and Venue - Mobile Optimized */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-4"
+          className="text-center mb-3 md:mb-4"
         >
-          <h2 className="text-base md:text-2xl text-gold mb-0.5 playfair font-medium tracking-wide">
+          <h2 className="text-sm md:text-2xl text-gold mb-0.5 playfair font-medium tracking-wide">
             {formatDate(targetDate)}
           </h2>
-          <p className="text-[11px] md:text-base text-navy-200/90 font-light tracking-wider">
+          <p className="text-[10px] md:text-base text-navy-200/90 font-light tracking-wider">
             {time} {venue}
           </p>
         </motion.div>
 
         {/* Main Content */}
-        <div className="flex flex-col items-center space-y-4 md:space-y-6">
+        <div className="flex flex-col items-center space-y-3 md:space-y-6">
           {/* Welcome Message - Mobile Optimized */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -200,10 +204,10 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h1 className="text-xl md:text-4xl lg:text-5xl playfair text-white font-light tracking-wide">
+            <h1 className="text-lg md:text-4xl lg:text-5xl playfair text-white font-light tracking-wide">
               Our Wedding
             </h1>
-            <div className="w-8 md:w-16 h-px bg-gold/40 mx-auto mt-1" />
+            <div className="w-6 md:w-16 h-px bg-gold/40 mx-auto mt-1" />
           </motion.div>
 
           {/* Countdown Timer - Mobile Optimized */}
@@ -211,9 +215,9 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-xl bg-navy-800/20 backdrop-blur-sm rounded-lg p-2.5 md:p-4"
+            className="w-full max-w-xs md:max-w-xl bg-navy-800/20 backdrop-blur-sm rounded-lg p-2 md:p-4"
           >
-            <div className="grid grid-cols-4 gap-1.5 md:gap-3">
+            <div className="grid grid-cols-4 gap-1 md:gap-3">
               {[
                 { label: 'DAYS', value: timeLeft.days },
                 { label: 'HOURS', value: timeLeft.hours },
@@ -225,12 +229,12 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index, duration: 0.6 }}
-                  className="text-center py-1.5 px-1 md:p-2 rounded-md bg-navy-800/30 backdrop-blur-sm"
+                  className="text-center py-1 px-0.5 md:p-2 rounded-md bg-navy-800/30 backdrop-blur-sm"
                 >
-                  <div className="text-lg md:text-3xl lg:text-4xl font-light text-gold playfair leading-none mb-1">
+                  <div className="text-base md:text-3xl lg:text-4xl font-light text-gold playfair leading-none mb-0.5 md:mb-1">
                     {String(unit.value).padStart(2, '0')}
                   </div>
-                  <div className="text-[9px] md:text-xs text-navy-200/90 tracking-wider font-light uppercase">
+                  <div className="text-[8px] md:text-xs text-navy-200/90 tracking-wider font-light uppercase">
                     {unit.label}
                   </div>
                 </motion.div>
@@ -245,15 +249,15 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="w-full aspect-[4/3] md:aspect-[3/2] rounded-lg overflow-hidden shadow-lg bg-navy-800/20 relative mb-1.5"
+              className="w-full aspect-[4/3] md:aspect-[3/2] rounded-lg overflow-hidden shadow-lg bg-navy-800/20 relative mb-1"
             >
               {isLoading ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-navy-800/10 backdrop-blur-sm">
-                  <div className="w-7 h-7 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
+                  <div className="w-6 h-6 md:w-7 md:h-7 border-2 border-gold/20 border-t-gold rounded-full animate-spin" />
                 </div>
               ) : error ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-navy-800/10 backdrop-blur-sm">
-                  <p className="text-xs text-navy-200/90">{error}</p>
+                  <p className="text-[10px] md:text-xs text-navy-200/90">{error}</p>
                 </div>
               ) : (
                 <AnimatePresence mode="wait">
@@ -290,30 +294,30 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
                       fill
                       className="object-cover transform transition-transform duration-[400ms]"
                       priority
-                      sizes="(max-width: 768px) 100vw, 800px"
+                      sizes="(max-width: 375px) 100vw, (max-width: 768px) 100vw, 800px"
                       quality={85}
                       onError={() => setError('Failed to load image')}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 via-navy-900/10 to-transparent opacity-90" />
 
                     {/* Navigation Controls - Mobile Optimized */}
-                    <div className="absolute inset-x-0 bottom-2 flex justify-center items-center gap-3 z-10">
+                    <div className="absolute inset-x-0 bottom-2 flex justify-center items-center gap-2 md:gap-3 z-10">
                       <motion.button
                         whileTap={{ scale: 0.9 }}
                         onClick={goToPrevImage}
                         disabled={isTransitioning}
-                        className={`w-7 h-7 rounded-full bg-navy-900/50 backdrop-blur-sm flex items-center justify-center 
+                        className={`w-6 h-6 md:w-7 md:h-7 rounded-full bg-navy-900/50 backdrop-blur-sm flex items-center justify-center 
                           active:bg-navy-900/70 transition-all duration-200
                           ${isTransitioning ? 'opacity-50 cursor-not-allowed' : 'hover:bg-navy-900/60'}`}
                         aria-label="Previous image"
                       >
-                        <svg className="w-4 h-4 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 md:w-4 md:h-4 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                         </svg>
                       </motion.button>
 
                       {/* Dots - Mobile Optimized */}
-                      <div className="flex gap-1">
+                      <div className="flex gap-0.5 md:gap-1">
                         {images.map((_, index) => (
                           <button
                             key={index}
@@ -324,9 +328,9 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
                                 index > currentImageIndex ? 1 : -1
                               );
                             }}
-                            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 
+                            className={`w-1 h-1 md:w-1.5 md:h-1.5 rounded-full transition-all duration-300 
                               ${currentImageIndex === index 
-                                ? 'bg-gold/90 w-2.5' 
+                                ? 'bg-gold/90 w-2 md:w-2.5' 
                                 : isTransitioning 
                                   ? 'bg-white/30 cursor-not-allowed'
                                   : 'bg-white/40 hover:bg-white/60'}`}
@@ -340,12 +344,12 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
                         whileTap={{ scale: 0.9 }}
                         onClick={goToNextImage}
                         disabled={isTransitioning}
-                        className={`w-7 h-7 rounded-full bg-navy-900/50 backdrop-blur-sm flex items-center justify-center 
+                        className={`w-6 h-6 md:w-7 md:h-7 rounded-full bg-navy-900/50 backdrop-blur-sm flex items-center justify-center 
                           active:bg-navy-900/70 transition-all duration-200
                           ${isTransitioning ? 'opacity-50 cursor-not-allowed' : 'hover:bg-navy-900/60'}`}
                         aria-label="Next image"
                       >
-                        <svg className="w-4 h-4 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3 md:w-4 md:h-4 text-white/90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                         </svg>
                       </motion.button>
@@ -360,7 +364,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className="grid grid-cols-6 gap-1 w-full mt-1.5"
+              className="grid grid-cols-6 gap-0.5 md:gap-1 w-full mt-1"
             >
               {images.map((src, index) => (
                 <motion.div
@@ -375,7 +379,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({
                     alt={`Wedding Preview ${index + 1}`}
                     fill
                     className="object-cover transition-transform duration-300"
-                    sizes="(max-width: 768px) 16vw, 100px"
+                    sizes="(max-width: 375px) 16vw, (max-width: 768px) 16vw, 100px"
                     quality={60}
                   />
                   <div className={`absolute inset-0 transition-all duration-200

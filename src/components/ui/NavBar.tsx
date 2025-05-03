@@ -166,7 +166,7 @@ const NavBar: React.FC<NavBarProps> = ({
               <img src={logo} alt="Wedding Logo" className="h-12 w-auto" />
             ) : (
               <div 
-                className={`text-3xl font-bold playfair flex items-center cursor-pointer ${
+                className={`text-base sm:text-2xl font-bold playfair flex items-center cursor-pointer ${
                   isScrolled
                     ? 'text-navy dark:text-white'
                     : 'text-white'
@@ -285,36 +285,46 @@ interface MobileNavProps {
 
 const MobileNav: React.FC<MobileNavProps> = ({ navItems, activeSection, onNavItemClick }) => {
   return (
-    <div className="flex flex-col h-full pt-12">
+    <motion.div
+      className="flex flex-col h-full pt-12 overflow-y-auto"
+      initial={{ opacity: 0, y: -40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
       <div className="text-3xl font-bold mb-12 playfair text-center text-navy dark:text-white">Menu</div>
 
-      <div className="space-y-8 flex flex-col items-center">
-        {navItems.map((item) => (
+      <div className="space-y-3 flex flex-col items-center px-2 pb-8">
+        {navItems.map((item, i) => (
           <motion.button
             key={item.href}
-            className={`text-xl uppercase tracking-wider figtree font-medium transition-colors relative ${
+            className={`w-full text-base sm:text-lg font-normal uppercase tracking-wider figtree transition-colors relative py-2 px-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold-200/60 shadow-md bg-white/80 dark:bg-navy-800/80 hover:bg-gold-50/60 dark:hover:bg-gold-900/20 active:scale-95 ${
               activeSection === item.href.substring(1)
-                ? 'text-navy dark:text-white'
-                : 'text-navy/80 dark:text-gray-300 hover:text-navy dark:hover:text-white'
+                ? 'text-gold-700 dark:text-gold-300'
+                : 'text-navy/90 dark:text-white/90'
             }`}
             onClick={() => onNavItemClick(item.href.substring(1))}
-            whileHover={{ scale: 1.05, x: 5 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.04, x: 8 }}
+            whileTap={{ scale: 0.97 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.08 * i, duration: 0.4, ease: 'easeOut' }}
           >
-            {item.label}
+            <span className="relative z-10">{item.label}</span>
             {activeSection === item.href.substring(1) && (
               <motion.div
-                className="absolute -left-6 top-1/2 w-2 h-2 bg-navy dark:bg-white rounded-full"
-                layoutId="mobileIndicator"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.3 }}
+                className="absolute left-4 right-4 bottom-2 h-1 rounded-full bg-gradient-to-r from-gold-200 via-gold-400 to-gold-200 shadow-md"
+                layoutId="mobileUnderlineFancy"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
+                style={{ originX: 0 }}
               />
             )}
           </motion.button>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
